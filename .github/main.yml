@@ -33,3 +33,5 @@ on:
             aws-region: ${{ vars.AWS_REGION }}
 
         - name: Install Pulumi CLI
+          id: install_pulumi
+#          uses: pulumi/action-install-pulumi-cli@v2.0.0

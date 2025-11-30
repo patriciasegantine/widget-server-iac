@@ -1,13 +1,13 @@
-name: Pulumi CI
+name: Pulumi - Check
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
 jobs:
-  update:
-    name: Update
+  preview:
+    name: Preview
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -32,11 +32,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{vars.AWS_REGION}}
 
-      - name: Run Pulumi Up
-        id: pulumi_up
+      - name: Run Pulumi Preview
+        id: pulumi_preview
         uses: pulumi/actions@v6
         with:
-          command: up
+          command: preview
           stack-name: patriciasegantine/stage
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
